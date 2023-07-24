@@ -24,7 +24,7 @@ function SearchNews() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`api/news/search?query=${query}`, {
+    const res = await fetch(`/api/news/search?query=${query}`, {
       cache: "no-store",
     });
     const news = await res.json();
