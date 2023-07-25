@@ -9,8 +9,7 @@ import { NextResponse } from "next/server";
 // }
 
 export  async function GET(request) {
-  const url =
-    `https://${process.env.NEWS_HOST}/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
+  const url = `${process.env.NEWS_HOST}/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
   const options = {
     method: "GET",
     headers: {

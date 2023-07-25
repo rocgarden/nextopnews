@@ -7,7 +7,7 @@ const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
 
-  const response = await fetch("https://localhost:3000/api/news", {
+  const response = await fetch("http://localhost:3000/api/news", {
     cache: "no-store",
   });
   const news = await response.json();
