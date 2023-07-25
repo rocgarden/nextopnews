@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 
 export  async function GET(request) {
-  const url = `newsdata2.p.rapidapi.com/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
+  const url = `https://newsdata2.p.rapidapi.com/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
   const options = {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": process.env.NEWS_KEY,
+      "X-RapidAPI-Host": "newsdata2.p.rapidapi.com",
       "Access-Control-Allow-Origin": origin || "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
