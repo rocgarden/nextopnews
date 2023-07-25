@@ -6,12 +6,16 @@ import { Shrikhand } from "next/font/google";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
-
-  const response = await fetch(process.env.GET_NEWS + '/api/news', {
+  try {
+  const response = await fetch(process.env.GET_NEWS + "/api/news", {
     cache: "no-store",
   });
   const news = await response.json();
   return news;
+  } catch (error) {
+    console.log(error);
+}
+
 }
 
 const NewsFeed = async () => {
