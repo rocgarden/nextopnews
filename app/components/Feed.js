@@ -13,7 +13,7 @@ async function fetchNews() {
   const news = await response.json();
   return news;
   } catch (error) {
-    console.log(error);
+    return new Error("no data returned");
 }
 
 }
