@@ -12,7 +12,7 @@ export async function GET(request) {
       "X-BingApis-SDK": "true",
       "X-RapidAPI-Key": process.env.NEWS_KEY,
       "X-RapidAPI-Host": process.env.SEARCH_NEWS_HOST,
-      "Access-Control-Allow-Origin": origin || "*",
+      "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
