@@ -23,31 +23,33 @@ const NewsFeed = async () => {
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
     };
 
-
+  try {
     const news = await fetchNews();
     var newsArr = [];
-  for (var i = 0; i < news.results.length; i++) {
-    var title = news.results[i].title;
-    var content = news.results[i].content;
-    var creator = news.results[i].creator;
-    var description = news.results[i].description;
-    var pubDate = new Date(news.results[i].pubDate).toString().slice(0, 15);
-    var link = news.results[i].link;
-    var img = news.results[i].image_url;
-    var category = capitalize(news.results[i].category.toString());
+    for (var i = 0; i < news.results.length; i++) {
+      var title = news.results[i].title;
+      var content = news.results[i].content;
+      var creator = news.results[i].creator;
+      var description = news.results[i].description;
+      var pubDate = new Date(news.results[i].pubDate).toString().slice(0, 15);
+      var link = news.results[i].link;
+      var img = news.results[i].image_url;
+      var category = capitalize(news.results[i].category.toString());
 
-    var newsObj = {
-      title: title,
-      content: content,
-      creator: creator,
-      description: description,
-      pubDate: pubDate,
-      link: link,
-      img: img,
-      category: category
-    };
+      var newsObj = {
+        title: title,
+        content: content,
+        creator: creator,
+        description: description,
+        pubDate: pubDate,
+        link: link,
+        img: img,
+        category: category,
+      };
       newsArr.push(newsObj);
-
+    }
+  } catch (error) {
+    return new Error("no data returned");
   }
   
   return (
