@@ -44,13 +44,6 @@ export default function NewsCard(props) {
           </Link>
         </CardContent>
         {img === null ? (
-          // <CardMedia
-          //   component="img"
-          //   sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-          //   // image={Nullimage}
-          //   alt="image by Chester Wade on Unsplash"
-          //   src="imgHolder.jpg"
-          // />
           <CardMedia
             sx={{
               position: "relative",
@@ -72,38 +65,13 @@ export default function NewsCard(props) {
             image={img}
             alt={title}
           />
-          // <CardMedia
-          //   sx={{
-          //     position: "relative",
-          //     width: 160,
-          //     display: { xs: "none", sm: "block" },
-          //   }}
-          // >
-          //   <Image src={img} alt={title} style={{ objectFit: "cover" }} fill />
-          // </CardMedia>
+       
         )}
       </Card>
     </Grid>
   );
 }
-  // <CardMedia
-      //   // component="img"
-      //   sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-      //   // image={Nullimage}
-      //   alt="image by Chester Wade on Unsplash"
-      //   src="imgHolder.jpg"
-      // >
-      //   <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      //     <Image
-      //       src="/imgHolder.jpg"
-      //       alt="image by Chester Wade on Unsplash"
-      //       style={{
-      //         objectFit: "cover",
-      //       }}
-      //       fill
-      //     />
-      //   </div>
-      // </CardMedia>;
+
 
   
 

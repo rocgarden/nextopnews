@@ -86,19 +86,25 @@ const NewsFeed = async () => {
           </Typography>
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
-          {newsArr.map((item, id) => {
-            return (
-              <NewsCard
-                title={item.title}
-                creator={item.creator}
-                description={item.description}
-                pubDate={item.pubDate}
-                category={item.category}
-                img={item.img}
-                link={item.link}
-              />
-            );
-          })}
+          {newsArr === "undefined" ? (
+            <Typography variant="h5" component="span">
+              Loading
+            </Typography>
+          ) : (
+            newsArr.map((item, id) => {
+              return (
+                <NewsCard
+                  title={item.title}
+                  creator={item.creator}
+                  description={item.description}
+                  pubDate={item.pubDate}
+                  category={item.category}
+                  img={item.img}
+                  link={item.link}
+                />
+              );
+            })
+          )}
         </Grid>
       </Grid>
     </>
