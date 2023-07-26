@@ -27,7 +27,6 @@ function SearchNews() {
       cache: "no-store",
     });
     const news = await res.json();
-    console.log(news);
     setNewsResults(news.value);
     setQuery("");
   };
