@@ -5,13 +5,13 @@ export async function GET(request) {
 
   const query = searchParams.get("query");
 
-  const url = `https://${process.env.SEARCH_NEWS_HOST}/news/search?freshness=Day&textFormat=Raw&safeSearch=Strict&q=${query}`;
+  const url = `https://bing-news-search1.p.rapidapi.com/news/search?freshness=Day&textFormat=Raw&safeSearch=Strict&q=${query}`;
   const options = {
     method: "GET",
     headers: {
       "X-BingApis-SDK": "true",
       "X-RapidAPI-Key": process.env.NEWS_KEY,
-      "X-RapidAPI-Host": process.env.SEARCH_NEWS_HOST,
+      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
