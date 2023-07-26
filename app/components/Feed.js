@@ -48,7 +48,7 @@ const NewsFeed = async () => {
       newsArr.push(newsObj);
     }
   } catch (error) {
-    return new Error("no data returned");
+    console.log(error)
   }
   
   return (
