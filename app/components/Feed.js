@@ -1,4 +1,3 @@
-
 import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -86,7 +85,7 @@ const NewsFeed = async () => {
           </Typography>
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
-          {newsArr === "undefined" ? (
+          {!newsArr.length ? (
             <Typography variant="h5" component="span">
               Loading
             </Typography>
