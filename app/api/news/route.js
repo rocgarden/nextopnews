@@ -16,7 +16,9 @@ export  async function GET(request) {
   };
 
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url, options, {
+      cache: "no-store",
+    });
     const result = await response.json();
    return NextResponse.json(result)
   } catch (error) {
