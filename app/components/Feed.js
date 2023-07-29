@@ -1,3 +1,4 @@
+"use effect"
 import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
