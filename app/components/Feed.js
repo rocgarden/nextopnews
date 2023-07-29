@@ -1,69 +1,65 @@
-"use client"
 import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
-import { useEffect, useState } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
-
-
-async function NewsFeed() {
-  const [news, setNewsPosts] = useState()
-
-  const capitalize = (word) => {
-    return word[0].toUpperCase() + word.substring(1).toLowerCase();
-  };
-
-  async function fetchNews() {
-    try {
-      const response = await fetch( "/api/news", {
-        next: { revalidate: 1 },
-      });
-      const news = await response.json();
-      setNewsPosts(news);
-      // return news;
-    } catch (error) {
-      return new Error("no data returned");
-    }
-  }
-
-  useEffect(() => {
-    const getNews = async () => {
-      await fetchNews();
-    }
-    getNews();
-  },[])
-
+async function fetchNews() {
   try {
-    // const news = await fetchNews();
-    var newsArr = [];
-    for (var i = 0; i < news.results.length; i++) {
-      var title = news.results[i].title;
-      var content = news.results[i].content;
-      var creator = news.results[i].creator;
-      var description = news.results[i].description;
-      var pubDate = new Date(news.results[i].pubDate).toString().slice(0, 15);
-      var link = news.results[i].link;
-      var img = news.results[i].image_url;
-      var category = capitalize(news.results[i].category.toString());
-
-      var newsObj = {
-        title: title,
-        content: content,
-        creator: creator,
-        description: description,
-        pubDate: pubDate,
-        link: link,
-        img: img,
-        category: category,
-      };
-      newsArr.push(newsObj);
-    }
+  const response = await fetch(process.env.GET_NEWS + "/api/news", {
+    next: { revalidate: 1 }
+  }
+  );
+  const news = await response.json();
+  return news;
   } catch (error) {
-    console.log(error);
+    return new Error("no data returned");
+}
+
+}
+
+const NewsFeed = async () => {
+    const capitalize = (word) => {
+      return word[0].toUpperCase() + word.substring(1).toLowerCase();
+    };
+  var newsArr = [];
+  const getNews = () => {
+      try {
+     fetchNews().then((data) => {
+      for (var i = 0; i < news.results.length; i++) {
+        var title = data.results[i].title;
+        var content = data.results[i].content;
+        var creator = data.results[i].creator;
+        var description = data.results[i].description;
+        var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
+        var link = data.results[i].link;
+        var img = data.results[i].image_url;
+        var category = capitalize(data.results[i].category.toString());
+
+        var newsObj = {
+          title: title,
+          content: content,
+          creator: creator,
+          description: description,
+          pubDate: pubDate,
+          link: link,
+          img: img,
+          category: category,
+        };
+        newsArr.push(newsObj);
+      }
+    })
+  
+    
+  } catch (error) {
+    console.log(error)
+  }
   }
 
+ useEffect(() => {
+   getNews();
+ }, []);
+  
   return (
     <>
       <Grid
@@ -98,7 +94,7 @@ async function NewsFeed() {
           </Typography>
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
-          {newsArr.map((item, id) => {
+            {newsArr.map((item, id) => {
             return (
               <NewsCard
                 title={item.title}
@@ -107,15 +103,16 @@ async function NewsFeed() {
                 pubDate={item.pubDate}
                 category={item.category}
                 img={item.img}
-                link={item.link} />
-            );
+                link={item.link}
+              />
+            )
           })}
-
+            
         </Grid>
       </Grid>
     </>
   );
-}
+};
 
 export default NewsFeed;
 
