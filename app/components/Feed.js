@@ -1,30 +1,42 @@
+"use client"
 import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
+import { useEffect, useState } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
-async function fetchNews() {
-  try {
-  const response = await fetch(process.env.GET_NEWS + "/api/news", {
-    next: { revalidate: 1 }
+
+
+async function NewsFeed() {
+  const [news, setNewsPosts] = useState()
+
+  const capitalize = (word) => {
+    return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  };
+
+  async function fetchNews() {
+    try {
+      const response = await fetch(process.env.GET_NEWS + "/api/news", {
+        next: { revalidate: 1 },
+      });
+      const news = await response.json();
+      setNewsPosts(news);
+      // return news;
+    } catch (error) {
+      return new Error("no data returned");
+    }
   }
-  );
-  const news = await response.json();
-  return news;
-  } catch (error) {
-    return new Error("no data returned");
-}
 
-}
-
-const NewsFeed = async () => {
-    const capitalize = (word) => {
-      return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    };
+  useEffect(() => {
+    const getNews = async () => {
+      await fetchNews();
+    }
+    getNews();
+  },[])
 
   try {
-    const news = await fetchNews();
+    // const news = await fetchNews();
     var newsArr = [];
     for (var i = 0; i < news.results.length; i++) {
       var title = news.results[i].title;
@@ -49,9 +61,9 @@ const NewsFeed = async () => {
       newsArr.push(newsObj);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-  
+
   return (
     <>
       <Grid
@@ -86,7 +98,7 @@ const NewsFeed = async () => {
           </Typography>
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
-            {newsArr.map((item, id) => {
+          {newsArr.map((item, id) => {
             return (
               <NewsCard
                 title={item.title}
@@ -95,16 +107,15 @@ const NewsFeed = async () => {
                 pubDate={item.pubDate}
                 category={item.category}
                 img={item.img}
-                link={item.link}
-              />
-            )
+                link={item.link} />
+            );
           })}
-            
+
         </Grid>
       </Grid>
     </>
   );
-};
+}
 
 export default NewsFeed;
 
