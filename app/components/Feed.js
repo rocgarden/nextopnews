@@ -27,7 +27,8 @@ const NewsFeed = async () => {
   var newsArr = [];
   const getNews = () => {
       try {
-     fetchNews().then((data) => {
+        fetchNews().then((data) => {
+          console.log(data);
       for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
