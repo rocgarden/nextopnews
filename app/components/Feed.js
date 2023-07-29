@@ -8,7 +8,7 @@ const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
   try {
-  const response = await fetch(process.env.GET_NEWS + "/api/news", {
+  const response = await fetch("/api/news", {
     next: { revalidate: 1 }
   }
   );
@@ -28,7 +28,7 @@ const NewsFeed = async () => {
   const getNews = () => {
       try {
      fetchNews().then((data) => {
-      for (var i = 0; i < news.results.length; i++) {
+      for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
         var creator = data.results[i].creator;
