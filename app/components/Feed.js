@@ -17,7 +17,7 @@ async function NewsFeed() {
 
   async function fetchNews() {
     try {
-      const response = await fetch(process.env.GET_NEWS + "/api/news", {
+      const response = await fetch( "/api/news", {
         next: { revalidate: 1 },
       });
       const news = await response.json();
