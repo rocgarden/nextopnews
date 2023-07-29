@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 0; //revalidate api every 1 second
 
 export  async function GET(request) {
   const url = `https://newsdata2.p.rapidapi.com/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
