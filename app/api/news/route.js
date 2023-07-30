@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
 
 export  async function GET(request) {
   const url = `https://newsdata2.p.rapidapi.com/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
@@ -20,12 +20,7 @@ export  async function GET(request) {
       cache: "no-store",
     });
     const result = await response.json();
-    //To dynamically get the path
-    const path = request.nextUrl.searchParams.get("path") || "/";
-
-    revalidatePath(path);
-
-    return NextResponse.json(result);
+   return NextResponse.json(result)
   } catch (error) {
     return NextResponse.json({ message: error, success: false})
   }

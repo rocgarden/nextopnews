@@ -29,7 +29,7 @@ const NewsFeed = async () => {
       try {
         fetchNews().then((data) => {
           console.log(data);
-      for (var i = 0; i < data.results.length; i++) {
+      for (var i = 0; i < data.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
         var creator = data.results[i].creator;
