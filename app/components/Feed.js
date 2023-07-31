@@ -98,22 +98,26 @@ const NewsFeed = async () => {
           {
             !newsArr ? null : newsArr.length === 0 ? (
             <Grid>Loading</Grid>
-            ):
-              (
-            newsArr.map((item, id) => {
-            return (
-              <NewsCard
-                key={id}
-                title={item.title}
-                creator={item.creator}
-                description={item.description}
-                pubDate={item.pubDate}
-                category={item.category}
-                img={item.img}
-                link={item.link}
-              />
-            );
-          }))
+            ) : (
+                newsArr.map((item, id) => {
+                  <h4>{ item.title}</h4>
+                })
+            )
+          //     (
+          //   newsArr.map((item, id) => {
+          //   return (
+          //     <NewsCard
+          //       key={id}
+          //       title={item.title}
+          //       creator={item.creator}
+          //       description={item.description}
+          //       pubDate={item.pubDate}
+          //       category={item.category}
+          //       img={item.img}
+          //       link={item.link}
+          //     />
+          //   );
+          // }))
         }
         </Grid>
       </Grid>
