@@ -27,7 +27,6 @@ const NewsFeed = async () => {
     };
   var newsArr = [];
   const getNews = () => {
-      try {
         fetchNews().then((data) => {
           console.log(data);
       for (var i = 0; i < data.results.length; i++) {
@@ -54,11 +53,7 @@ const NewsFeed = async () => {
       }
           setNewsArray(newsArr);
     })
-  
-    
-  } catch (error) {
-    console.log(error)
-  }
+
   }
 
  useEffect(() => {
