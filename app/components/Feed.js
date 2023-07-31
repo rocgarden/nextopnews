@@ -98,20 +98,22 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-          loading === "success" && 
-            newsArr.map((item, id) => {
-            return (
-              <NewsCard
-                title={item.title}
-                creator={item.creator}
-                description={item.description}
-                pubDate={item.pubDate}
-                category={item.category}
-                img={item.img}
-                link={item.link}
-              />
-            )
-            })
+            loading === "success" && 
+            <Typography>Loading</Typography>
+            // newsArr.map((item, id) => {
+            // return (
+            //   <NewsCard
+            //     key={id}
+            //     title={item.title}
+            //     creator={item.creator}
+            //     description={item.description}
+            //     pubDate={item.pubDate}
+            //     category={item.category}
+            //     img={item.img}
+            //     link={item.link}
+            //   />
+            // )
+            // })
           }
             
         </Grid>
