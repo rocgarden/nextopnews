@@ -29,28 +29,28 @@ const NewsFeed = async () => {
       try {
         fetchNews().then((data) => {
           console.log(data);
-      for (var i = 0; i < data.length; i++) {
-        var title = data.results[i].title;
-        var content = data.results[i].content;
-        var creator = data.results[i].creator;
-        var description = data.results[i].description;
-        var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
-        var link = data.results[i].link;
-        var img = data.results[i].image_url;
-        var category = capitalize(data.results[i].category.toString());
+      // for (var i = 0; i < data.length; i++) {
+      //   var title = data.results[i].title;
+      //   var content = data.results[i].content;
+      //   var creator = data.results[i].creator;
+      //   var description = data.results[i].description;
+      //   var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
+      //   var link = data.results[i].link;
+      //   var img = data.results[i].image_url;
+      //   var category = capitalize(data.results[i].category.toString());
 
-        var newsObj = {
-          title: title,
-          content: content,
-          creator: creator,
-          description: description,
-          pubDate: pubDate,
-          link: link,
-          img: img,
-          category: category,
-        };
-        newsArr.push(newsObj);
-      }
+      //   var newsObj = {
+      //     title: title,
+      //     content: content,
+      //     creator: creator,
+      //     description: description,
+      //     pubDate: pubDate,
+      //     link: link,
+      //     img: img,
+      //     category: category,
+      //   };
+      //   newsArr.push(newsObj);
+      // }
     })
   
     
