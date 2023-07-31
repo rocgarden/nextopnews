@@ -59,9 +59,9 @@ const NewsFeed = async () => {
 
   }
 
- useEffect(() => {
-   getNews();
- }, []);
+//  useEffect(() => {
+//    getNews();
+//  }, []);
   
   return (
     <>
