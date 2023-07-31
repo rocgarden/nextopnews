@@ -52,7 +52,7 @@ const NewsFeed = async () => {
         newsArr.push(newsObj);
       }
           setNewsArray(newsArr);
-          console.log("newsObj: ",newsArr)
+          console.log("newsObj: ",newsArray)
     })
 
   }
@@ -99,7 +99,7 @@ const NewsFeed = async () => {
             !newsArray ? null  (
             <Grid>Loading</Grid>
             ) : (
-                newsArr.map((item, id) => {
+                newsArray.map((item, id) => {
                   <h4>{ item.title}</h4>
                 })
             )
