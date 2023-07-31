@@ -48,10 +48,12 @@ const NewsFeed = async () => {
           img: img,
           category: category,
         };
+        console.log("newsObj: ", newsObj)
         newsArr.push(newsObj);
+        console.log("newsArr:: ",newsArr)
       }
     })
-  
+    
     
   } catch (error) {
     console.log(error)
