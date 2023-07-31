@@ -3,7 +3,7 @@ import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
@@ -20,14 +20,15 @@ async function fetchNews() {
 }
 
 const NewsFeed = async () => {
+  const [loading, setLoading] = useState()
     const capitalize = (word) => {
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
     };
    var newsArr = [];
-   const getNews = async() => {
+  const getNews = async () => {
+    setLoading("Loading");
       try {
        await fetchNews().then((data) => {
-          console.log("data: ",data);
       for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
@@ -48,12 +49,10 @@ const NewsFeed = async () => {
           img: img,
           category: category,
         };
-        console.log("newsObj: ", newsObj)
         newsArr.push(newsObj);
-        console.log("newsArr:: ",newsArr)
       }
     })
-    
+        setLoading("success");
     
   } catch (error) {
     console.log(error)
@@ -99,9 +98,7 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-            !newsArr ? null : newsArr.length === 0 ? (
-        ""
-      ) : (
+          loading === "success" && 
             newsArr.map((item, id) => {
             return (
               <NewsCard
@@ -114,7 +111,7 @@ const NewsFeed = async () => {
                 link={item.link}
               />
             )
-            }))
+            })
           }
             
         </Grid>
