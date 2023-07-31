@@ -8,11 +8,9 @@ const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
   try {
-    const response = await fetch(process.env.GET_NEWS + "/api/news",
-  //     {
-  //   next: { revalidate: 1 }
-  // }
-  );
+    const response = await fetch("/api/news", {
+      cache: "no-store",
+    });
     const news = await response.json();
     console.log("news:: ",news)
   return news;
@@ -98,7 +96,7 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-            !newsArray ? null : newsArray.length === 0 ? (
+            !newsArr ? null : newsArr.length === 0 ? (
             <Grid>Loading</Grid>
             ):
               (
