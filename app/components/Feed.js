@@ -1,13 +1,14 @@
+"use client"
 import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
   try {
-  const response = await fetch(process.env.GET_NEWS + '/api/news', {
+  const response = await fetch('/api/news', {
     cache: "no-store",
   });
   const news = await response.json();
@@ -22,10 +23,10 @@ const NewsFeed = async () => {
     const capitalize = (word) => {
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
     };
-  var newsArr = [];
-  // const getNews = () => {
+   var newsArr = [];
+   const getNews = async() => {
       try {
-        fetchNews().then((data) => {
+       await fetchNews().then((data) => {
           console.log("data: ",data);
       for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
@@ -55,11 +56,11 @@ const NewsFeed = async () => {
   } catch (error) {
     console.log(error)
   }
-//  }
+ }
 
-//  useEffect(() => {
-//    getNews();
-//  }, []);
+ useEffect(() => {
+   getNews();
+ }, []);
   
   return (
     <>
