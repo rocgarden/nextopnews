@@ -97,7 +97,9 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-            
+            !newsArr ? null : newsArr.length === 0 ? (
+        ""
+      ) : (
             newsArr.map((item, id) => {
             return (
               <NewsCard
@@ -110,7 +112,8 @@ const NewsFeed = async () => {
                 link={item.link}
               />
             )
-          })}
+            }))
+          }
             
         </Grid>
       </Grid>
