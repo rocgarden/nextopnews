@@ -96,7 +96,7 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-            !newsArr ? null : newsArr.length === 0 ? (
+            !newsArray ? null  (
             <Grid>Loading</Grid>
             ) : (
                 newsArr.map((item, id) => {
