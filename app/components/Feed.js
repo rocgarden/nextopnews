@@ -3,7 +3,7 @@ import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
@@ -21,6 +21,7 @@ async function fetchNews() {
 }
 
 const NewsFeed = async () => {
+  const [newsArray, setNewsArray] = useState([]);
     const capitalize = (word) => {
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
     };
@@ -51,6 +52,7 @@ const NewsFeed = async () => {
         };
         newsArr.push(newsObj);
       }
+          setNewsArray(newsArr);
     })
   
     
@@ -97,9 +99,10 @@ const NewsFeed = async () => {
           </Typography>
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
-            {newsArr.map((item, id) => {
+          {newsArray.map((item, id) => {
             return (
               <NewsCard
+                key={id}
                 title={item.title}
                 creator={item.creator}
                 description={item.description}
@@ -108,9 +111,8 @@ const NewsFeed = async () => {
                 img={item.img}
                 link={item.link}
               />
-            )
+            );
           })}
-            
         </Grid>
       </Grid>
     </>
