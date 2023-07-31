@@ -3,42 +3,41 @@ import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
+async function fetchNews() {
+  try {
+  const response = await fetch("/api/news", {
+    next: { revalidate: 1 }
+  }
+  );
+  const news = await response.json();
+  return news;
+  } catch (error) {
+    return new Error("no data returned");
+}
 
+}
 
 const NewsFeed = async () => {
-  const [newsArray, setNewsArray] = useState([]);
     const capitalize = (word) => {
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
     };
-  
-  async function fetchNews() {
-    try {
-      const response = await fetch("/api/news", {
-        cache: "no-store",
-      });
-      const news = await response.json();
-      console.log("news:: ", news);
-      setNewsArray(news.results);
-    } catch (error) {
-      return new Error("no data returned");
-    }
-  }
   var newsArr = [];
   const getNews = () => {
+      try {
         fetchNews().then((data) => {
           console.log(data);
-      for (var i = 0; i < data.length; i++) {
-        var title = data[i].title;
-        var content = data[i].content;
-        var creator = data[i].creator;
-        var description = data[i].description;
-        var pubDate = new Date(data[i].pubDate).toString().slice(0, 15);
-        var link = data[i].link;
-        var img = data[i].image_url;
-        var category = capitalize(data[i].category.toString());
+      for (var i = 0; i < data.results.length; i++) {
+        var title = data.results[i].title;
+        var content = data.results[i].content;
+        var creator = data.results[i].creator;
+        var description = data.results[i].description;
+        var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
+        var link = data.results[i].link;
+        var img = data.results[i].image_url;
+        var category = capitalize(data.results[i].category.toString());
 
         var newsObj = {
           title: title,
@@ -52,10 +51,12 @@ const NewsFeed = async () => {
         };
         newsArr.push(newsObj);
       }
-         // setNewsArray(newsArr);
-          console.log("newsObj: ",newsArray)
     })
-
+  
+    
+  } catch (error) {
+    console.log(error)
+  }
   }
 
  useEffect(() => {
@@ -97,29 +98,21 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-            !newsArray ? null : newsArray.length === 0 ? (
-              <Grid>Loading</Grid>
-            ) : (
-              newsArr.map((item, id) => {
-                <h4>{item.title}</h4>;
-              })
+            
+            newsArr.map((item, id) => {
+            return (
+              <NewsCard
+                title={item.title}
+                creator={item.creator}
+                description={item.description}
+                pubDate={item.pubDate}
+                category={item.category}
+                img={item.img}
+                link={item.link}
+              />
             )
-            //     (
-            //   newsArr.map((item, id) => {
-            //   return (
-            //     <NewsCard
-            //       key={id}
-            //       title={item.title}
-            //       creator={item.creator}
-            //       description={item.description}
-            //       pubDate={item.pubDate}
-            //       category={item.category}
-            //       img={item.img}
-            //       link={item.link}
-            //     />
-            //   );
-            // }))
-          }
+          })}
+            
         </Grid>
       </Grid>
     </>
