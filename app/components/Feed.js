@@ -28,7 +28,7 @@ const NewsFeed = async () => {
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
     };
   var newsArr = [];
-  const getNews = () => {
+  // const getNews = () => {
         fetchNews().then((data) => {
           console.log(data.results);
       for (var i = 0; i < data.results.length; i++) {
@@ -57,7 +57,7 @@ const NewsFeed = async () => {
           console.log("newsObj: ",newsArr)
     })
 
-  }
+  // }
 
 //  useEffect(() => {
 //    getNews();
