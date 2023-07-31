@@ -8,11 +8,13 @@ const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
   try {
-  const response = await fetch("/api/news", {
-    next: { revalidate: 1 }
-  }
+    const response = await fetch("/api/news",
+  //     {
+  //   next: { revalidate: 1 }
+  // }
   );
-  const news = await response.json();
+    const news = await response.json();
+    console.log("news:: ",news)
   return news;
   } catch (error) {
     return new Error("no data returned");
@@ -28,7 +30,7 @@ const NewsFeed = async () => {
   var newsArr = [];
   const getNews = () => {
         fetchNews().then((data) => {
-          console.log(data);
+          console.log(data.results);
       for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
@@ -52,6 +54,7 @@ const NewsFeed = async () => {
         newsArr.push(newsObj);
       }
           setNewsArray(newsArr);
+          console.log("newsObj: ",newsObj)
     })
 
   }
