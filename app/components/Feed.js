@@ -1,5 +1,5 @@
 "use client"
-import NewsCard from "./newsCard";
+// import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
@@ -20,15 +20,19 @@ async function fetchNews() {
 }
 
 const NewsFeed = async () => {
-  const [loading, setLoading] = useState()
-    const capitalize = (word) => {
-      return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    };
-   var newsArr = [];
+  const [loading, setLoading] = useState();
+
+  const capitalize = (word) => {
+    return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  };
+
+  var newsArr = [];
+  
   const getNews = async () => {
     setLoading("Loading");
       try {
-       await fetchNews().then((data) => {
+        const data = await fetchNews();
+          // .then((data) => {
       for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
@@ -51,7 +55,8 @@ const NewsFeed = async () => {
         };
         newsArr.push(newsObj);
       }
-    })
+      //  }
+      //  )
         setLoading("success");
     
   } catch (error) {
@@ -98,22 +103,21 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-             <Typography>Loading</Typography>
-            //   loading === "success" &&
-            // newsArr.map((item, id) => {
-            // return (
-            //   <NewsCard
-            //     key={id}
-            //     title={item.title}
-            //     creator={item.creator}
-            //     description={item.description}
-            //     pubDate={item.pubDate}
-            //     category={item.category}
-            //     img={item.img}
-            //     link={item.link}
-            //   />
-            // )
-            // })
+              loading === "success" &&
+            newsArr.map((item, index) => {
+            return (
+              <NewsCard
+                key={index}
+                title={item.title}
+                creator={item.creator}
+                description={item.description}
+                pubDate={item.pubDate}
+                category={item.category}
+                img={item.img}
+                link={item.link}
+              />
+            )
+            })
           }
         </Grid>
       </Grid>
