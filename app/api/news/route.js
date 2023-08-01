@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export  async function GET(request) {
   const url = `https://newsdata2.p.rapidapi.com/news?country=us&category=entertainment%2C%20business%2C%20science&language=en`;
@@ -16,9 +16,7 @@ export  async function GET(request) {
   };
 
   try {
-    const response = await fetch(url, options, {
-      cache: "no-store",
-    });
+    const response = await fetch(url, options);
     const result = await response.json();
    return NextResponse.json(result)
   } catch (error) {
