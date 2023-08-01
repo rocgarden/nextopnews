@@ -98,8 +98,8 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-            loading === "success" && 
-            <Typography>Loading</Typography>
+             <Typography>Loading</Typography>
+            //   loading === "success" &&
             // newsArr.map((item, id) => {
             // return (
             //   <NewsCard
@@ -115,7 +115,6 @@ const NewsFeed = async () => {
             // )
             // })
           }
-            
         </Grid>
       </Grid>
     </>
