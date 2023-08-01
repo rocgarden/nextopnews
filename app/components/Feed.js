@@ -28,6 +28,7 @@ const NewsFeed = async () => {
       try {
         const data = await fetchNews();
           // .then((data) => {
+        console.log("length",data.results.length)
       for (var i = 0; i < data.results.length; i++) {
         var title = data.results[i].title;
         var content = data.results[i].content;
@@ -51,7 +52,7 @@ const NewsFeed = async () => {
         newsArr.push(newsObj);
       }
       //  )
-    
+    console.log("data:: ", data)
   } catch (error) {
     console.log(error)
   }
