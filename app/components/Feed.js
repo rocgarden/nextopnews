@@ -1,36 +1,38 @@
+"use client"
 import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
+import { useState } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
-async function fetchNews() {
-  try {
-    const response = await fetch(process.env.GET_NEWS + '/api/news',
-      {
-    cache: "no-store",
-      }
-    );
-  const news = await response.json();
-  return news;
-  } catch (error) {
-    return new Error("no data returned");
-}
-
-}
-
 const NewsFeed = async () => {
-
+const [newsData, setNewsData] = useState([])
   const capitalize = (word) => {
     return word[0].toUpperCase() + word.substring(1).toLowerCase();
   };
 
   var newsArr = [];
+
+  // async function fetchNews() {
+    try {
+      const response = await fetch('/api/news',
+        {
+          cache: "no-store",
+        }
+      );
+      const news = await response.json();
+      setNewsData(news.results);
+      // return news;
+    } catch (error) {
+      return new Error("no data returned");
+    }
+  //}
   
       try {
-        const data = await fetchNews();
+        // const data = await fetchNews();
           // .then((data) => {
-        console.log("length",data)
+        console.log("length",newsData)
       // for (var i = 0; i < data.results.length; i++) {
       //   var title = data.results[i].title;
       //   var content = data.results[i].content;
@@ -93,9 +95,10 @@ const NewsFeed = async () => {
             </Typography>
           </Typography>
         </Grid>
-        {/* <Grid sx={{ marginTop: 7 }}>
+        
+        <Grid sx={{ marginTop: 7 }}>
           {
-            data.map((item, index) => {
+            newsData.map((item, index) => {
             return (
               <NewsCard
                 key={index}
@@ -110,7 +113,7 @@ const NewsFeed = async () => {
             )
             })
           }
-        </Grid> */}
+        </Grid> 
       </Grid>
     </>
   );
