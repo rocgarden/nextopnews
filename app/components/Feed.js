@@ -1,9 +1,7 @@
-"use client"
-// import NewsCard from "./newsCard";
+import NewsCard from "./newsCard";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Shrikhand } from "next/font/google";
-import { useEffect, useState } from "react";
 const shrikhand = Shrikhand({ subsets: ["latin"], weight: ["400"] });
 
 async function fetchNews() {
@@ -20,7 +18,6 @@ async function fetchNews() {
 }
 
 const NewsFeed = async () => {
-  const [loading, setLoading] = useState();
 
   const capitalize = (word) => {
     return word[0].toUpperCase() + word.substring(1).toLowerCase();
@@ -28,8 +25,6 @@ const NewsFeed = async () => {
 
   var newsArr = [];
   
-  const getNews = async () => {
-    setLoading("Loading");
       try {
         const data = await fetchNews();
           // .then((data) => {
@@ -55,18 +50,13 @@ const NewsFeed = async () => {
         };
         newsArr.push(newsObj);
       }
-      //  }
       //  )
-        setLoading("success");
     
   } catch (error) {
     console.log(error)
   }
- }
+//  }
 
- useEffect(() => {
-   getNews();
- }, []);
   
   return (
     <>
@@ -103,7 +93,6 @@ const NewsFeed = async () => {
         </Grid>
         <Grid sx={{ marginTop: 7 }}>
           {
-              loading === "success" &&
             newsArr.map((item, index) => {
             return (
               <NewsCard
