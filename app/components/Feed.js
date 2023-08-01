@@ -30,31 +30,30 @@ const NewsFeed = async () => {
       try {
         const data = await fetchNews();
           // .then((data) => {
-        console.log("length",data.results)
-      for (var i = 0; i < data.results.length; i++) {
-        var title = data.results[i].title;
-        var content = data.results[i].content;
-        var creator = data.results[i].creator;
-        var description = data.results[i].description;
-        var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
-        var link = data.results[i].link;
-        var img = data.results[i].image_url;
-        var category = capitalize(data.results[i].category.toString());
+        console.log("length",data)
+      // for (var i = 0; i < data.results.length; i++) {
+      //   var title = data.results[i].title;
+      //   var content = data.results[i].content;
+      //   var creator = data.results[i].creator;
+      //   var description = data.results[i].description;
+      //   var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
+      //   var link = data.results[i].link;
+      //   var img = data.results[i].image_url;
+      //   var category = capitalize(data.results[i].category.toString());
 
-        var newsObj = {
-          title: title,
-          content: content,
-          creator: creator,
-          description: description,
-          pubDate: pubDate,
-          link: link,
-          img: img,
-          category: category,
-        };
-        newsArr.push(newsObj);
-      }
+      //   var newsObj = {
+      //     title: title,
+      //     content: content,
+      //     creator: creator,
+      //     description: description,
+      //     pubDate: pubDate,
+      //     link: link,
+      //     img: img,
+      //     category: category,
+      //   };
+      //   newsArr.push(newsObj);
+      // }
       //  )
-    console.log("data:: ", data)
   } catch (error) {
     console.log(error)
   }
@@ -94,9 +93,9 @@ const NewsFeed = async () => {
             </Typography>
           </Typography>
         </Grid>
-        <Grid sx={{ marginTop: 7 }}>
+        {/* <Grid sx={{ marginTop: 7 }}>
           {
-            newsArr.map((item, index) => {
+            data.map((item, index) => {
             return (
               <NewsCard
                 key={index}
@@ -111,7 +110,7 @@ const NewsFeed = async () => {
             )
             })
           }
-        </Grid>
+        </Grid> */}
       </Grid>
     </>
   );
