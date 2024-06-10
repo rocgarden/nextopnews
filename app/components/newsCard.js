@@ -23,9 +23,9 @@ export default function NewsCard(props) {
         }}
       >
         <CardContent sx={{ flex: 1 }}>
-          {/* <Typography variant="caption" color="red">
-            {category}
-          </Typography> */}
+          <Typography variant="caption" color="red">
+             Latest News
+          </Typography>
           <Typography component="h2" variant="h5">
             {title}
           </Typography>

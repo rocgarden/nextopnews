@@ -32,7 +32,7 @@ async function NewsFeed() {
       var content = data.items[i].content;
       var publisher = data.items[i].publisher;
       var snippet = data.items[i].snippet;
-      var timestamp = new Date(data.items[i].timestamp).toString().slice(0, 15);
+      var timestamp = new Date(data.items[i].timestamp).toLocaleDateString('en-US');
       var newsUrl = data.items[i].newsUrl;
       var img = data.items[i].images.thumbnail;
       // var category = capitalize(data.results[i].category.toString());
