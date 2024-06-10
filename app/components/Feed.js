@@ -30,22 +30,21 @@ async function NewsFeed() {
     for (var i = 0; i < data.results.length; i++) {
       var title = data.results[i].title;
       var content = data.results[i].content;
-      var creator = data.results[i].creator;
-      var description = data.results[i].description;
-      var pubDate = new Date(data.results[i].pubDate).toString().slice(0, 15);
-      var link = data.results[i].link;
-      var img = data.results[i].image_url;
+      var publisher = data.results[i].publisher;
+      var snippet = data.results[i].snippet;
+      var timestamp = new Date(data.results[i].timestamp).toString().slice(0, 15);
+      var newsUrl = data.results[i].newsUrl;
+      var img = data.results[i].images.thumbnail;
       var category = capitalize(data.results[i].category.toString());
 
       var newsObj = {
         title: title,
         content: content,
-        creator: creator,
-        description: description,
-        pubDate: pubDate,
-        link: link,
+        publisher: publisher,
+        snippet: snippet,
+        timestamp: timestamp,
+        newsUrl: newsUrl,
         img: img,
-        category: category,
       };
       newsArr.push(newsObj);
     }
@@ -94,12 +93,11 @@ async function NewsFeed() {
               <NewsCard
                 key={index}
                 title={item.title}
-                creator={item.creator}
-                description={item.description}
-                pubDate={item.pubDate}
-                category={item.category}
+                publisher={item.publisher}
+                snippet={item.snippet}
+                timestamp={item.timestamp}
                 img={item.img}
-                link={item.link} />
+                newsUrl={item.newsUrl} />
             );
           })}
         </Grid>

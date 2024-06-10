@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Image from "next/image";
 
 export default function NewsCard(props) {
-  const { title, creator, description, pubDate, link, img, category } =
+  const { title, publisher, snippet, timestamp, newsUrl, img } =
     props;
 
   return (
@@ -23,23 +23,23 @@ export default function NewsCard(props) {
         }}
       >
         <CardContent sx={{ flex: 1 }}>
-          <Typography variant="caption" color="red">
+          {/* <Typography variant="caption" color="red">
             {category}
-          </Typography>
+          </Typography> */}
           <Typography component="h2" variant="h5">
             {title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
-            {creator}
+            {publisher}
           </Typography>
 
           <Typography variant="subtitle1" color="text.secondary">
-            {pubDate}
+            {timestamp}
           </Typography>
           <Typography variant="subtitle1" paragraph>
-            {description}
+            {snippet}
           </Typography>
-          <Link href={link} target="_blank">
+          <Link href={newsUrl} target="_blank">
             Read more →
           </Link>
         </CardContent>
