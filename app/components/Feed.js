@@ -27,15 +27,15 @@ async function NewsFeed() {
     const data = await fetchNews();
     // .then((data) => {
     console.log("length", data);
-    for (var i = 0; i < data.results.length; i++) {
-      var title = data.results[i].title;
-      var content = data.results[i].content;
-      var publisher = data.results[i].publisher;
-      var snippet = data.results[i].snippet;
-      var timestamp = new Date(data.results[i].timestamp).toString().slice(0, 15);
-      var newsUrl = data.results[i].newsUrl;
-      var img = data.results[i].images.thumbnail;
-      var category = capitalize(data.results[i].category.toString());
+    for (var i = 0; i < 11; i++) {
+      var title = data.items[i].title;
+      var content = data.items[i].content;
+      var publisher = data.items[i].publisher;
+      var snippet = data.items[i].snippet;
+      var timestamp = new Date(data.items[i].timestamp).toString().slice(0, 15);
+      var newsUrl = data.items[i].newsUrl;
+      var img = data.items[i].images.thumbnail;
+      // var category = capitalize(data.results[i].category.toString());
 
       var newsObj = {
         title: title,
