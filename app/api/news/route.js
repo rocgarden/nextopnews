@@ -12,6 +12,7 @@ export  async function GET(request) {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Cross-Origin-Resource-Policy": "cross-origin" 
     },
     cache: "no-store",
   };
